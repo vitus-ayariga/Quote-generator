@@ -35,16 +35,9 @@ const apiConfig = {
 };
 
 // displayed content
-const displayedQuote = quoteEl.textContent;
-const displayedAuthor = authorEl.textContent;
+
 
 // social media urls
-const url = encodeURIComponent(window.location.href);
-const text = encodeURIComponent(`${displayedQuote} - ${displayedAuthor}`);
-const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
-const instagramUrl = `https://www.instagram.com/share?url=${url}&caption=${text}`;
-const whatsappUrl = `https://api.whatsapp.com/send?text=${text}`;
-const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&via=yourusername`;
 
 
 ////////////////////////////////////////////////////////////
@@ -65,8 +58,8 @@ function hideLoader() {
 function newQuote() {
   showLoader();
 
-  quoteEl.textContent = quotes[0].quote;
-  authorEl.textContent = quotes[0].author;
+  quoteEl.innerText = quotes[0].quote;
+  authorEl.innerText = quotes[0].author;
   quoteContainer.classList.add("show");
   authorContainer.classList.add("show");
 }
@@ -110,9 +103,29 @@ function closeSocialIcons() {
 
 ////// functions for sharing content
 // function for twitter
-function shareToSocialMedia(url) {
-  window.open(url, "_blank");
+function twitterShare() {
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteEl.textContent} - ${authorEl.innerText}`
+  window.open(twitterUrl, "_blank");
 }
+
+// function for facebook
+function facebookShare() {
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(`${quoteEl.textContent} - ${authorEl.innerText}`)}`;
+
+  window.open(facebookUrl, "_blank");
+}
+
+// function for instagram
+// function instagramShare() {
+//   const instagramUrl = `https://www.instagram.com/share?url=${encodeURIComponent(window.location.href)}&caption=${encodeURIComponent(${quoteEl.textContent} - ${authorEl.innerText})}`
+//   window.open(instagramUrl, "_blank");
+// }
+
+// // function for twitter
+// function twitterShare() {
+//   const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteEl.textContent} - ${authorEl.innerText}`
+//   window.open(twitterUrl, "_blank");
+// }
 
 // onload
 showLoader();
@@ -130,7 +143,5 @@ shareBtn.addEventListener("click", newShare);
 blurEl.addEventListener("click", closeSocialIcons);
 
 ///// social icons
-twitterBtn.addEventListener("click", () => shareToSocialMedia(twitterUrl));
-facebookBtn.addEventListener("click", () => shareToSocialMedia(facebookUrl));
-whatsappBtn.addEventListener("click", () => shareToSocialMedia(whatsappUrl));
-instagramBtn.addEventListener("click", () => shareToSocialMedia(instagramUrl));
+twitterBtn.addEventListener("click", twitterShare);
+facebookBtn.addEventListener("click", facebookShare);
