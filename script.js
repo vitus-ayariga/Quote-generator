@@ -45,8 +45,8 @@ function checkMediaQuery(mediaQuery) {
   if (mediaQuery.matches && quotes[0].quote.length > 120) {
     // Reduce font size for long quotes on mobile devices
 
-    quoteEl.style.fontSize = "0.8rem";
-    authorEl.style.fontSize = "0.8rem";
+    quoteEl.style.fontSize = "1rem";
+    authorEl.style.fontSize = "1rem";
   }
 }
 
