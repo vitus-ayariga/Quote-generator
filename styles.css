@@ -19,11 +19,13 @@ body {
   height: 100vh;
   margin: 0;
   color: rgba(6, 5, 5, 0.5);
+  flex-direction: column;
 }
 
 section {
   width: 90%;
   text-align: center;
+ /* height: 100vh; */
 }
 
 
@@ -84,19 +86,13 @@ ul li a i.fa-twitter:hover {
   color: #1DA1F2;
 }
 
-ul li a i.fa-facebook:hover {
-  color: #1877f2;
-}
 
 ul li a i.fa-whatsapp:hover {
   color: #25D366;
 }
 
-ul li a i.fa-instagram:hover {
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #af1685, #9b1d74);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+ul li a i.fa-clipboard :hover {
+border: 10px solid red;
 }
 
 
@@ -231,9 +227,24 @@ button:focus {
   100% { transform: rotate(360deg); }
 }
 
+/* clipboard success popup */
+.successfulCopyPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  z-index: 9999;
+}
+
 
 /* copyright element */
 .copyright {
-  position: fixed;
-    bottom: 0;
+  position: relative;
+    margin-bottom: 1em;
 }

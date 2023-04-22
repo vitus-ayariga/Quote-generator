@@ -17,9 +17,8 @@ const htmlMain = document.querySelector("main");
 
 // socialIcons
 const twitterBtn = document.querySelector(".twitter");
-const facebookBtn = document.querySelector(".facebook");
-const instagramBtn = document.querySelector(".instagram");
 const whatsappBtn = document.querySelector(".whatsapp");
+const copyToClipboardBtn = document.querySelector(".copyToClipboard");
 
 ////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
@@ -34,14 +33,23 @@ const apiConfig = {
   },
 };
 
-// displayed content
-
+// media query selector
+const mediaQuery = window.matchMedia("(max-width: 767px)");
 
 // social media urls
 
-
 ////////////////////////////////////////////////////////////
 // FUNCTIONS
+// media query function
+function checkMediaQuery(mediaQuery) {
+  if (mediaQuery.matches && quotes[0].quote.length > 120) {
+    // Reduce font size for long quotes on mobile devices
+
+    quoteEl.style.fontSize = "0.8rem";
+    authorEl.style.fontSize = "0.8rem";
+  }
+}
+
 // function to display loader
 function showLoader() {
   loaderEl.style.display = "block";
@@ -57,11 +65,14 @@ function hideLoader() {
 // function to update content of html elements (quote & author)
 function newQuote() {
   showLoader();
-
   quoteEl.innerText = quotes[0].quote;
   authorEl.innerText = quotes[0].author;
   quoteContainer.classList.add("show");
   authorContainer.classList.add("show");
+
+  // media query
+  checkMediaQuery(mediaQuery); // Check initial state
+  mediaQuery.addEventListener("change", checkMediaQuery); // Listen for changes in media query state
 }
 
 // async function to get data from API using
@@ -104,28 +115,40 @@ function closeSocialIcons() {
 ////// functions for sharing content
 // function for twitter
 function twitterShare() {
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteEl.textContent} - ${authorEl.innerText}`
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteEl.textContent} - ${authorEl.innerText}`;
   window.open(twitterUrl, "_blank");
 }
 
-// function for facebook
-function facebookShare() {
-  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(`${quoteEl.textContent} - ${authorEl.innerText}`)}`;
-
-  window.open(facebookUrl, "_blank");
+// // function for whatsapp
+function whatsappShare() {
+  const message = encodeURIComponent(
+    `${quoteEl.textContent} - ${authorEl.innerText}`
+  );
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${message}`;
+  window.open(whatsappUrl, "_blank");
 }
 
-// function for instagram
-// function instagramShare() {
-//   const instagramUrl = `https://www.instagram.com/share?url=${encodeURIComponent(window.location.href)}&caption=${encodeURIComponent(${quoteEl.textContent} - ${authorEl.innerText})}`
-//   window.open(instagramUrl, "_blank");
-// }
+// copy success function
+function copySuccess() {
+  const popup = document.createElement("div");
+  popup.classList.add("successfulCopyPopup");
+  popup.textContent = "Copied to clipboard!";
+  document.body.appendChild(popup);
+  const { width, height } = popup.getBoundingClientRect();
+  popup.style.top = `calc(50% - ${height / 2}px)`;
+  popup.style.left = `calc(50% - ${width / 2}px)`;
+  setTimeout(() => {
+    document.body.removeChild(popup);
+  }, 1000);
+}
 
-// // function for twitter
-// function twitterShare() {
-//   const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteEl.textContent} - ${authorEl.innerText}`
-//   window.open(twitterUrl, "_blank");
-// }
+// function to copy content to clipboard
+function copyToClipboard() {
+  const text = `${quoteEl.textContent} - ${authorEl.innerText}`;
+  navigator.clipboard.writeText(text).then(() => {
+    copySuccess();
+  });
+}
 
 // onload
 showLoader();
@@ -144,4 +167,8 @@ blurEl.addEventListener("click", closeSocialIcons);
 
 ///// social icons
 twitterBtn.addEventListener("click", twitterShare);
-facebookBtn.addEventListener("click", facebookShare);
+whatsappBtn.addEventListener("click", whatsappShare);
+copyToClipboardBtn.addEventListener("click", () => {
+  copyToClipboard();
+  document.querySelector(".fa-clipboard").classList.remove("fa-beat-fade");
+});
