@@ -215,8 +215,8 @@ button:focus {
   border: 1em solid hwb(0 88% 9% / 0.542); /* Light grey */
   border-top: 1em solid rgba(6, 5, 5, 0.5); /* Blue */
   border-radius: 50%;
-  width: 20%;
-  height: 20%;
+  width: 9.5em;
+  height: 9.5em;
   animation: spin 2s linear infinite;
   margin-left: auto;
   margin-right: auto;
