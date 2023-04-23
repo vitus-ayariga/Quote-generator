@@ -12,6 +12,25 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100&display=swap"
       rel="stylesheet"
     />
+    <!-- favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon_io/site.webmanifest" />
 
     <!-- font awesome script -->
     <script
@@ -24,53 +43,59 @@
 
     <!-- Javascript file -->
     <script src="./script.js" defer></script>
-    <title>Document</title>
+    <title>Anaba | Quotes</title>
   </head>
   <body>
     <section>
       <!-- loader -->
       <div class="loader"></div>
 
-    <!-- body blurer -->
-    <div class="blurBody fade"></div>
+      <!-- body blurer -->
+      <div class="blurBody fade"></div>
 
-    <!-- social media share prompt -->
-    <div class="socialIcons fade">
-      <ul>
-        <li><a class='twitter'><i class="fa-brands fa-twitter"></i></a></li>
-        <li><a class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a></li>
-        <li><a class="copyToClipboard"><i class="fa-regular fa-beat-fade fa-clipboard"></i></a></li>
- 
-        
-      </ul>
-    </div>
-
-    <main>
-      <!-- entire card -->
-      <div class="container">
-        <!-- quote -->
-        <p class="quote-container fade">
-          <i class="fa-solid fa-quote-left"></i>
-          <span class="quote"></span>
-        </p>
-
-        <!-- author -->
-        <p class="author-container fade">
-          <i class="tilde">~</i> <span class="author"></span>
-        </p>
-
-        <!-- buttons -->
-        <div class="buttons">
-          <button class="share btn">
-            <i class="fa-solid fa-share-nodes"></i> Share
-          </button>
-          <button class="new btn">
-            New <i class="fa-solid fa-arrow-right"></i>
-          </button>
-        </div>
+      <!-- social media share prompt -->
+      <div class="socialIcons fade">
+        <ul>
+          <li>
+            <a class="twitter"><i class="fa-brands fa-twitter"></i></a>
+          </li>
+          <li>
+            <a class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+          </li>
+          <li>
+            <a class="copyToClipboard"
+              ><i class="fa-regular fa-beat-fade fa-clipboard"></i
+            ></a>
+          </li>
+        </ul>
       </div>
-    </main>
-  </section>
-  <p class="copyright">© 2023 Anaba All Rights Reserved.</p>
+
+      <main>
+        <!-- entire card -->
+        <div class="container">
+          <!-- quote -->
+          <p class="quote-container fade">
+            <i class="fa-solid fa-quote-left"></i>
+            <span class="quote"></span>
+          </p>
+
+          <!-- author -->
+          <p class="author-container fade">
+            <i class="tilde">~</i> <span class="author"></span>
+          </p>
+
+          <!-- buttons -->
+          <div class="buttons">
+            <button class="share btn">
+              <i class="fa-solid fa-share-nodes"></i> Share
+            </button>
+            <button class="new btn">
+              New <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </main>
+    </section>
+    <p class="copyright">© 2023 Anaba All Rights Reserved.</p>
   </body>
 </html>
